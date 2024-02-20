@@ -1,0 +1,60 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "google"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "no-trailing-spaces": [0],
+    "camelcase": [0],
+//    "quotes": [2, "single"], // использовать одинарные кавычки
+    "semi": [2, "never"], // точка запятой
+//    "indent": [2, 4, { "SwitchCase": 1 }], // отступы в коде из 4 пробелов с учетом switch...case
+//    "arrow-parens": [2, "always"], // скобки вокруг единственного параметра стрелочной функции
+//    "arrow-body-style": [2, "as-needed"], // требовать фигурные скобки вокруг тел стрелочных функций
+    "object-curly-spacing": [2, "always"], // пробелы между скобками в литералах объектов
+//    "key-spacing": [2, { "beforeColon": false }], // постоянный интервал между ключами и значениями в свойствах литерала объекта
+   /* "object-curly-newline": [2, {
+      "ObjectExpression": { "multiline": true },
+      "ObjectPattern": { "multiline": true },
+      "ImportDeclaration": { "multiline": true },
+      "ExportDeclaration": { "multiline": true }
+    }], // разрывы строк после открытия и перед закрытием фигурных скобок*/
+//    "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }], // если одно свойство с новой строки
+    "curly": [2, "multi", "consistent"], // согласованный стиль фигурных скобок для всех операторов управления
+//    "array-bracket-spacing": [2, "never"], // пробелы между скобками в массивах
+//    "comma-dangle": [2, {
+//      "arrays": "always-multiline",
+//      "objects": "always-multiline",
+//      "imports": "always-multiline",
+//      "exports": "always-multiline",
+//      "functions": "always-multiline"
+//    }], // запятая после последнего элемента массива или объекта
+    "brace-style": [2, "1tbs"], // правила для фигурных скобкок для блоков кода
+//    "no-multi-spaces": [2], // не допускается несколько пробелов подряд
+//    "eqeqeq": [2], // использовать === и !== вместо == и !=
+//    "camelcase": [2], // имена переменных и функций в стиле camelCase
+//    "no-multiple-empty-lines": [2], // не больше 2 пустых строк подряд,
+//    "no-unneeded-ternary": [2], // запрещает тернарные операторы, если существуют более простые альтернативы
+    "max-len": [2, {
+      "code": 120,
+      "ignorePattern": "true",
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": false,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }] // максимальная длина строки
+//    "function-call-argument-newline": [2, "consistent"], // разрыв строк в аргументах
+//    "comma-spacing": [2, { "before": false, "after": true }], // пробел после запятой
+//    "newline-before-return": [2], // новая строка перед return
+//    "no-nested-ternary": 2,
+//    "space-infix-ops": 2,
+  }
+}

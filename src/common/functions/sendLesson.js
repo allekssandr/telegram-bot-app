@@ -1,0 +1,14 @@
+import { getLesson, sendDocument, sendVideo } from './index.js'
+
+export const sendLesson = async (courseNumber, lessonNumber, ctx) => {
+  const lesson = await getLesson(courseNumber, lessonNumber)
+
+  if (!lesson)
+    throw new Error('Лекция не найдена')
+
+  const { name, description, video_id, pdf_id } = lesson
+  const messageText = `<b>${name || '---'}</b>\n${description || ''}`
+  await ctx.reply(messageText, { parse_mode: 'html' })
+  if (pdf_id) await sendDocument(pdf_id, ctx)
+  if (video_id) await sendVideo(video_id, ctx)
+}
