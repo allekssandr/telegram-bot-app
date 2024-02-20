@@ -13,9 +13,9 @@ export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
     description,
     payload: JSON.stringify({
       unique_id: `${chatId}_${Number(new Date())}`,
-      provider_token: String(process.env.PROVIDER_TOKEN_TEST),
+      provider_token: String(process.env.PROVIDER_TOKEN),
     }),
-    provider_token: String(process.env.PROVIDER_TOKEN_TEST),
+    provider_token: String(process.env.PROVIDER_TOKEN),
     currency: 'RUB',
     prices: JSON.stringify([{ label, amount: price }]),
     provider_data: JSON.stringify({

@@ -13,7 +13,7 @@ import {
 export const DEFAULT_COURSE_ID = 1
 
 export const startTimer = (ctx) => {
-  cron.schedule('*/2 * * * *', async () => await sendDailyMessage(ctx, 1, 'min'))
+  cron.schedule('*/2 * * * *', async () => await sendDailyMessage(ctx, 4))
 }
 
 Bot.start(async (ctx) => {
