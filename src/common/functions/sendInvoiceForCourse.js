@@ -1,5 +1,7 @@
 import { getCourse } from './getCourse.js'
 
+const TYPE = 'test' // 'live' or 'test'
+
 export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
   const course = await getCourse(courseId)
   if (!course) 
@@ -7,30 +9,31 @@ export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
   
 
   const { title, description, label, price } = course
+  const providerToken = TYPE === 'live' ? process.env.PROVIDER_TOKEN : process.env.PROVIDER_TOKEN_TEST
 
   const invoice = {
     title,
     description,
     payload: JSON.stringify({
       unique_id: `${chatId}_${Number(new Date())}`,
-      provider_token: String(process.env.PROVIDER_TOKEN),
+      provider_token: providerToken,
     }),
-    provider_token: String(process.env.PROVIDER_TOKEN),
+    provider_token: providerToken,
     currency: 'RUB',
-    prices: JSON.stringify([{ label, amount: price }]),
-    provider_data: JSON.stringify({
-      receipt: {
-        items: [
-          {
-            name: 'Услуга по проведению вебинара "Курс по речи"',
-            sum: price / 100,
-            quantity: 1,
-            tax: 'none',
-          },
-        ],
-      },
-    }),
+    prices: [{ label, amount: price }],
+    // provider_data: JSON.stringify({
+    //   receipt: {
+    //     items: [
+    //       {
+    //         name: 'Услуга по проведению вебинара "Курс по речи"',
+    //         sum: price,
+    //         quantity: 1,
+    //         tax: 'none',
+    //       },
+    //     ],
+    //   },
+    // }), // убрано для тестовой оплаты
   }
 
-  ctx.telegram.sendInvoice(chatId, invoice)
+  await ctx.telegram.sendInvoice(chatId, invoice)
 }

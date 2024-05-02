@@ -1,8 +1,8 @@
-import {Telegraf} from 'telegraf';
-import dotenv from 'dotenv';
+import { Telegraf } from 'telegraf'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
-export const Bot = new Telegraf(process.env.BOT_TOKEN);
+export const Bot = new Telegraf(process.env.BOT_TOKEN)
 
-export default Bot;
+export default Bot

@@ -1,9 +1,8 @@
-export const daysBetween = (startDate, endDate) => {
-  const oneDay = 24 * 60 * 60 * 1000
-  return Math.floor((endDate - startDate) / oneDay)
-}
+export const daysBetween = (startDate, endDate, type = 'day') => {
+  let deltaDate = 60 * 1000 // type === min
+  
+  if (type === 'day')
+    deltaDate = 24 * 60 * 60 * 1000
 
-export const minutesBetween = (startDate, endDate) => {
-  const oneMinute = 60 * 1000
-  return Math.floor((endDate - startDate) / oneMinute)
+  return Math.floor((endDate - startDate) / deltaDate)
 }

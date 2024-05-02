@@ -1,7 +1,7 @@
-import {Sequelize} from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 export const DB = new Sequelize(
     process.env.POSTGRES_DATABASE,
     process.env.POSTGRES_USERNAME,
@@ -11,6 +11,6 @@ export const DB = new Sequelize(
       port: process.env.POSTGRES_PORT,
       dialect: process.env.POSTGRES_DIALECT,
     },
-);
+)
 
-export default DB;
+export default DB

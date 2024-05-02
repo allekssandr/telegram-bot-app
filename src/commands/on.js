@@ -1,6 +1,6 @@
 import Bot from '../bot.js'
 import { addPayment, getLastProgress, saveProgress, saveTimer, sendLesson } from '../common/functions/index.js'
-import { DEFAULT_COURSE_ID, startTimer } from './start.js'
+import { DEFAULT_COURSE_ID } from './start.js'
 
 Bot.on('pre_checkout_query', async (ctx) => {
   try {
@@ -32,7 +32,7 @@ Bot.on('successful_payment', async (ctx) => {
   await sendLesson(DEFAULT_COURSE_ID, 2, ctx)
 
   await saveTimer(chatId)
-  await startTimer(ctx)
+  // await startTimer(ctx)
 })
 
 Bot.on('video', async (ctx) => {
