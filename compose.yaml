@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 name: tg-bot-docker
 services:
 
@@ -26,10 +26,9 @@ services:
       - my_network
 
   tg-bot-app:
-    image: node:alpine
     container_name: tg-bot-app-container
     build:
-      context: .
+      context: ./bot_app
     ports:
       - 3001:3001
     environment:
