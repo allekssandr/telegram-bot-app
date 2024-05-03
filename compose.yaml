@@ -7,10 +7,12 @@ services:
     restart: always
     container_name: postgres-container
     shm_size: 128mb
+    env_file:
+      - ./.env
     environment:
-      POSTGRES_DB: telegram_bot
-      POSTGRES_USER: telegram_bot
-      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_LISTEN_ADDRESSES: '*'
     healthcheck:
       test: [ "CMD", "pg_isready" ]
@@ -31,18 +33,18 @@ services:
       context: ./bot_app
     ports:
       - 3001:3001
+    env_file:
+      - ./.env
     environment:
-      BOT_TOKEN: 5509036036:AAHdbNQ0WhRgtb2iQ8K1WanS9HPd_ZvAM0U
-      POSTGRES_DATABASE: telegram_bot
-      POSTGRES_USERNAME: telegram_bot
-      POSTGRES_PASSWORD: 123
-      POSTGRES_HOST: db
-      POSTGRES_PORT: 5432
-      POSTGRES_DIALECT: postgres
-      PROVIDER_TOKEN: 1902332405:LIVE:638218275098052721
-      PROVIDER_TOKEN_TEST: 1744374395:TEST:cbbf8f82426c62d89265
-#    env_file:
-#      - .env
+      BOT_TOKEN: ${BOT_TOKEN}
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DIALECT: ${POSTGRES_DIALECT}
+      PROVIDER_TOKEN: ${PROVIDER_TOKEN}
+      PROVIDER_TOKEN_TEST: ${PROVIDER_TOKEN_TEST}
     depends_on:
       db:
         condition: service_healthy
