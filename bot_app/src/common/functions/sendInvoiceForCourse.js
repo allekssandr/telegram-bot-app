@@ -1,6 +1,7 @@
 import { getCourse } from './getCourse.js'
 
 const TYPE = 'test' // 'live' or 'test'
+// цена курса задается в бд в коп., 100 = 1р
 
 export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
   const course = await getCourse(courseId)
@@ -10,6 +11,7 @@ export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
 
   const { title, description, label, price } = course
   const providerToken = TYPE === 'live' ? process.env.PROVIDER_TOKEN : process.env.PROVIDER_TOKEN_TEST
+  const priceAmount = TYPE === 'live' ? price : 5000
 
   const invoice = {
     title,
@@ -20,7 +22,7 @@ export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
     }),
     provider_token: providerToken,
     currency: 'RUB',
-    prices: [{ label, amount: price }],
+    prices: [{ label, amount: priceAmount }],
     // provider_data: JSON.stringify({
     //   receipt: {
     //     items: [

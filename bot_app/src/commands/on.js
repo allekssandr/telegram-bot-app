@@ -1,11 +1,11 @@
 import Bot from '../bot.js'
-import { addPayment, getLastProgress, saveProgress, saveTimer, sendLesson } from '../common/functions/index.js'
+import { addPayment, getLastProgress, isPaid, saveProgress, saveTimer, sendLesson } from '../common/functions/index.js'
 import { DEFAULT_COURSE_ID } from './start.js'
 
 Bot.on('pre_checkout_query', async (ctx) => {
   try {
     const preCheckoutQuery = ctx.preCheckoutQuery
-
+    // TODO: подумать над повторной оплатой
     await ctx.telegram.answerPreCheckoutQuery(preCheckoutQuery.id, true)
   } catch (e) {
     console.log(e)
@@ -17,6 +17,7 @@ Bot.on('successful_payment', async (ctx) => {
   // const amount = ctx.update.message.successful_payment.total_amount
   const providerPaymentChargeId = ctx.update.message.successful_payment.provider_payment_charge_id
   if (!providerPaymentChargeId) return
+  if (await isPaid(chatId)) return
 
   const res = await addPayment(chatId, DEFAULT_COURSE_ID, providerPaymentChargeId)
 
