@@ -1,6 +1,6 @@
 import { getCourse } from './getCourse.js'
 
-const TYPE = 'test' // 'live' or 'test'
+const TYPE = 'live' // 'live' or 'test'
 // цена курса задается в бд в коп., 100 = 1р
 
 export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
@@ -23,18 +23,18 @@ export const sendInvoiceForCourse = async (courseId, chatId, ctx) => {
     provider_token: providerToken,
     currency: 'RUB',
     prices: [{ label, amount: priceAmount }],
-    // provider_data: JSON.stringify({
-    //   receipt: {
-    //     items: [
-    //       {
-    //         name: 'Услуга по проведению вебинара "Курс по речи"',
-    //         sum: price,
-    //         quantity: 1,
-    //         tax: 'none',
-    //       },
-    //     ],
-    //   },
-    // }), // убрано для тестовой оплаты
+    provider_data: JSON.stringify({
+      receipt: {
+        items: [
+          {
+            name: 'Услуга по проведению вебинара "Курс по речи"',
+            sum: price,
+            quantity: 1,
+            tax: 'none',
+          },
+        ],
+      },
+    }), // убрать для тестовой оплаты
   }
 
   await ctx.telegram.sendInvoice(chatId, invoice)
