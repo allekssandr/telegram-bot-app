@@ -65,7 +65,7 @@ Bot.start(async (ctx) => {
       return
     }
 
-    const { id, username, first_name, last_name } = await ctx.chat
+    const { id, username, first_name, last_name } = ctx.chat
     let messageText = 'Ваш последний урок:'
 
     const lastProgress = await getLastProgress(id)

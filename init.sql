@@ -29,7 +29,6 @@ CREATE TABLE payment (
 	"createdAt" timestamptz NOT NULL,
 	"updatedAt" timestamptz NOT NULL,
 	CONSTRAINT "payment_chatId_key" UNIQUE ("chatId"),
-	CONSTRAINT "payment_courseId_key" UNIQUE ("courseId"),
 	CONSTRAINT payment_pkey PRIMARY KEY (id),
 	CONSTRAINT payment_provider_payment_charge_id_key UNIQUE (provider_payment_charge_id)
 );
