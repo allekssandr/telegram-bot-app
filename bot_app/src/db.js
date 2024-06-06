@@ -5,7 +5,7 @@ dotenv.config()
 
 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++')
 console.log('+++++++++++++++++++++++++++++++++++++++++++++++++')
-console.log(process.env.POSTGRES_DATABASE)
+console.log(process.env.POSTGRES_DIALECT)
 
 export const DB = new Sequelize(
     process.env.POSTGRES_DATABASE,
