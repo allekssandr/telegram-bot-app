@@ -9,7 +9,7 @@ CREATE TABLE course (
 
 CREATE TABLE chat (
 	id serial4 NOT NULL,
-	"chatId" int4 NULL,
+	"chatId" bigint NULL,
 	username varchar(255) NULL,
 	first_name varchar(255) NULL,
 	last_name varchar(255) NULL,
@@ -22,7 +22,7 @@ CREATE TABLE chat (
 
 CREATE TABLE payment (
 	id serial4 NOT NULL,
-	"chatId" int4 NULL,
+	"chatId" bigint NULL,
 	"courseId" int4 NULL,
 	is_payment varchar(255) NULL,
 	provider_payment_charge_id text NULL,
@@ -47,7 +47,7 @@ CREATE TABLE lesson (
 
 CREATE TABLE progress (
 	id serial4 NOT NULL,
-	"chatId" int4 NOT NULL,
+	"chatId" bigint NOT NULL,
 	"courseId" int4 NOT NULL,
 	number_lesson int4 NOT NULL,
 	"createdAt" timestamptz NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE progress (
 
 CREATE TABLE timer (
 	id serial4 NOT NULL,
-	"chatId" int4 NULL,
+	"chatId" bigint NULL,
 	date_timer timestamptz NOT NULL,
 	"createdAt" timestamptz NOT NULL,
 	"updatedAt" timestamptz NOT NULL,
