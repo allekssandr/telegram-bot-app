@@ -89,8 +89,12 @@ Bot.start(async (ctx) => {
         return
       } else {
         await ctx.reply(messageText)
-        await sendLesson(DEFAULT_COURSE_ID, 1, ctx)
+
         await saveProgress(id, DEFAULT_COURSE_ID, 1)
+        await sendLesson(DEFAULT_COURSE_ID, 1, ctx)
+        await saveProgress(id, DEFAULT_COURSE_ID, 2)
+        await sendLesson(DEFAULT_COURSE_ID, 2, ctx)
+
         await saveTimer(id)
         // await startTimer(ctx)
 
